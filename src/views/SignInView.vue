@@ -1,14 +1,15 @@
 <template>
-  <div class="form">
-    <h3>Sign In</h3>
+  <div class="form-container">
+    <h1>Sign In</h1>
 
     <form @submit.prevent="submit">
 
       <input v-model="data.email" type="email" placeholder="email" required>
       <input v-model="data.password" type="password" placeholder="password" minlength="6" required>
-      <button type="submit">Submit</button>
+      <button  type="submit">Submit</button>
 
     </form>
+    <h4>Please wait for some time after clicking submit button</h4>
   </div>
 </template>
 
@@ -64,50 +65,52 @@ export default {
 };
 </script>
 
-<style scoped>
+
 /* Sign In container styling */
-.form {
+<style scoped>
+/* Scoped CSS ensures styles only apply to this component */
+
+/* Style the form container */
+.form-container {
+  
   max-width: 400px;
-  margin: 50px auto;
+  margin-top: 20px;
+  margin-left: 35%;
   padding: 20px;
-  background-color: #fff;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
 
-/* Sign In form styling */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-input {
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 15px;
+/* Style inputs */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
-button {
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: #fff;
+/* Style the submit button */
+button[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-button:hover {
+button[type="submit"]:hover {
   background-color: #45a049;
+}
+
+/* Style the hint message */
+h4 {
+  text-align: center;
+  color: #888;
 }
 </style>

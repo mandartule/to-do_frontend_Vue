@@ -2,8 +2,20 @@
     <div>
         <ol>
             <li v-for="task in tasks" :key="task.id">
-                {{ task.name }} <input type="checkbox" v-model="task.completed" @change="updateTaskCompletion(task)">
-                <button @click="deleteTask(task)">Delete</button>
+                <div class="task-container">
+                    <div class="task">{{ task.name }}</div>
+                    
+                        <label :for="`checkbox-${task.id}`" class="custom-checkbox">
+                            <input type="checkbox" :id="`checkbox-${task.id}`" class="task-checkbox"
+                                v-model="task.completed" @change="updateTaskCompletion(task)">
+                            <span class="checkmark"></span>
+                        </label>
+                        <button  @click="deleteTask(task)">Delete</button>
+                    
+
+                    
+
+                </div>
             </li>
         </ol>
     </div>
@@ -53,7 +65,7 @@ export default {
         async deleteTask(task) {
             try {
                 const response = await fetch(`https://todo-backend-nest.onrender.com/task/${task._id}`, {
-                    method: 'DELETE', 
+                    method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem("user")}`
@@ -76,42 +88,80 @@ export default {
 };
 </script>
 
+
+
 <style scoped>
-h2 {
-    color: #333;
+
+ol {
+  font-size: 20px; /* Sets the font size for the numbers */
 }
 
-
-
-li {
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.task-container {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment in the center */
+  justify-content: space-between; /* Spaces out the child elements */
 }
 
-h2 {
-    color: #333;
+.task-container > div {
+  display: flex;
+  align-items: center; /* Aligns the checkbox and button inline with the task text */
 }
-li {
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+.task {
+  /* Ensure there's enough margin to separate the task text from the checkbox */
+  margin-right: 10px;
+  font-size: 20px;
+  padding: 5px 100px;
+  background-color: white; 
+  border: 1px solid black; 
+  border-radius: 5px; 
+  
+
 }
-/* Add styles for your delete button if needed */
+
+.task-checkbox {
+  transform: scale(3); /* Adjust the scale value as needed */
+  cursor: pointer; /* Optional: improves user experience by changing the cursor on hover */
+}
+
 button {
-    margin-left: 10px;
-    background-color: #ff4d4f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    padding: 5px 10px;
+  border: 1px solid black; /* Adds a black border to the button */
+  background-color: #ff4d4f;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
 }
+
 button:hover {
-    background-color: #ff7875;
+  background-color: #ff7875;
+}
+
+.custom-checkbox input {
+  margin-right: 10px; /* Adds some space between the checkbox and the task text */
+}
+
+.custom-checkbox input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.custom-checkbox input:checked~.checkmark:after {
+    display: block;
+}
+
+.custom-checkbox .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
 </style>

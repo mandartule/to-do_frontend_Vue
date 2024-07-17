@@ -7,7 +7,7 @@ const state = {
 const actions = {
   async fetchTasks({ commit }, token) {
     try {
-      const response = await axios.get("http://50.17.81.170:3000/todo", {
+      const response = await axios.get("http://localhost:3333/task", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -19,32 +19,13 @@ const actions = {
       console.log("Error" + e);
     }
   },
-
-  async addTasks({ commit }, {name, token}) {
-    console.log(token);
-    console.log(name);
-
-    const response = await axios.post(
-      "http://50.17.81.170:3000/todo",
-      {
-        name,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
-      }
-    );
-    let res = response.data;
-    commit("newTasks", res);
-  },
-  
-  async updateTasks({ commit }, { taskId, token }) {
+  async addTasks({ commit }, { name, token }) {
     try {
-      const response = await axios.patch(
-        `http://50.17.81.170:3000/todo/${taskId}`,
-        {},
+      console.log(token);
+      console.log(name);
+      const response = await axios.post(
+        "http://localhost:3333/task/",
+        { name },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,9 +34,35 @@ const actions = {
         }
       );
       let res = response.data;
-      commit("updateTask", res);
+      if (res && res._id) {  // Ensure the response is valid
+        commit("newTasks", res);
+      } else {
+        console.error("Invalid response from server:", res);
+      }
     } catch (error) {
-      console.error("Error updating task: ", error);
+      console.error("Error adding task:", error);
+    }
+  },
+  async updateTasks({ commit }, { taskId, token, updatePayload }) {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3333/task/${taskId}`,
+        updatePayload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      let res = response.data;
+      if (res && res._id) {  // Ensure the response is valid
+        commit("updateTask", res);
+      } else {
+        console.error("Invalid response from server:", res);
+      }
+    } catch (error) {
+      console.error("Error updating task:", error);
     }
   },
 };
@@ -65,11 +72,18 @@ const getters = {
 };
 
 const mutations = {
-  setTasks: (state, tasks) => (state.tasks = tasks),
-  newTasks: (state, task) => state.tasks.unshift(task),
+  setTasks: (state, tasks) => (state.tasks = Array.isArray(tasks) ? tasks : []),
+  newTasks: (state, task) => {
+    if (!Array.isArray(state.tasks)) {
+      state.tasks = [];
+    }
+    if (task && typeof task === 'object') {
+      state.tasks.unshift(task);
+    }
+  },
   updateTask: (state, task) => {
     const index = state.tasks.findIndex((tasks) => tasks._id === task._id);
-    if (index !== -1) {
+    if (index !== -1 && task && typeof task === 'object') {
       state.tasks.splice(index, 1, task);
     }
   },

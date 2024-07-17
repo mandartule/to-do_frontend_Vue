@@ -2,7 +2,7 @@
   <div class="task-form-container">
     Add a Task
     <form class="task-form" @submit.prevent="add(taskName)">
-      <input class="tast-input" type="text" v-model="taskName" placeholder="Enter task name" required />
+      <input class="task-input" type="text" v-model="taskName" placeholder="Enter task name" required />
       <button class="submit-button" type="submit">Add Task</button>
     </form>
   </div>
@@ -58,43 +58,35 @@ export default {
 
 <style scoped>
 .task-form-container {
-  display: inline-block;
-  width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   margin: 0 auto;
+  padding: 20px;
   background-color: #f9f9f9;
+  border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-
 }
 
 .task-form {
-
+  display: flex;
+  flex-direction: column;
   gap: 10px;
 }
 
 .task-input {
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-}
-
-.task-input:focus {
-  outline: none;
-  border-color: #007BFF;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
 .submit-button {
-  margin-left: 10px;
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #007BFF;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
   transition: background-color 0.3s ease;
 }
 

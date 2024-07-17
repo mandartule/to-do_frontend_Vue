@@ -47,6 +47,7 @@ export default {
       localStorage.setItem("user", token);
 
       store.dispatch('auth/login');
+      
       if(status.value){
         router.push('/')
       }else{

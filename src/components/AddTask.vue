@@ -1,82 +1,101 @@
 <template>
   <div class="task-form-container">
-    <h4>Add a Task</h4>
-    <form @submit="onSubmit" class="task-form">
-      <input
-        type="text"
-        v-model="name"
-        placeholder="Add a task here"
-        class="task-input"
-      />
-      <input type="submit" value="Add" class="submit-button" />
+    Add a Task
+    <form class="task-form" @submit.prevent="add(taskName)">
+      <input class="tast-input" type="text" v-model="taskName" placeholder="Enter task name" required />
+      <button class="submit-button" type="submit">Add Task</button>
     </form>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
 export default {
-  name: "AddTask",
   data() {
     return {
-      name: "",
+      taskName: '', // This will hold the task name
     };
   },
   methods: {
-    ...mapActions(["addTasks"]),
-    onSubmit(e) {
-      let token = localStorage.getItem("user");
-      e.preventDefault();
-      this.addTasks({ name: this.name, token });
-      this.name = "";
-    },
+
+    async add(name) {
+      if (!name) return; // Prevent adding empty tasks
+
+      const token = localStorage.getItem("user"); 
+      
+      try {
+        const response = await fetch('http://localhost:3333/task', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({ name }),
+          credentials: 'include', // Equivalent to Axios' withCredentials: true
+        });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        console.log(response);
+        console.log('Task added successfully');
+
+        this.$emit('taskUpdated');
+
+        
+      } catch (error) {
+        console.error("Failed to add task:", error);
+      }
+    }
+
   },
 };
+
 </script>
 
 <style scoped>
 .task-form-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    text-align: center;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
 }
 
 .task-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+
+  gap: 10px;
 }
 
 .task-input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s ease;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
 }
 
 .task-input:focus {
-    outline: none;
-    border-color: #007BFF;
+  outline: none;
+  border-color: #007BFF;
 }
 
 .submit-button {
-    padding: 10px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  margin-left: 10px;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 </style>

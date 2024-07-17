@@ -35,13 +35,13 @@ export default {
       password: "",
     });
 
-    const router=useRouter();
+    const router = useRouter();
 
     const status = computed(() => store.getters["auth/isAuthenticated"]);
 
     const submit = async () => {
 
-      console.log(data);
+      //console.log(data);
       
       const response = await fetch("http://localhost:3333/auth/signup", {
         method: "POST",
@@ -51,13 +51,7 @@ export default {
       });
 
       const responseData = await response.json();
-      const token = responseData.token;
-
-      if(!token){
-        alert('Invalid credentials');
-        return;
-      }
-      
+      const token = responseData.token; 
 
       localStorage.setItem("user", token);
 

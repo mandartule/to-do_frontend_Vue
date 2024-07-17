@@ -15,7 +15,7 @@ export default {
     props: ['tasks'],
 
     mounted() {
-        
+
     },
 
     methods: {
@@ -29,7 +29,7 @@ export default {
             console.log(id);
 
             try {
-                const response = await fetch(`http://localhost:3333/task/${id}`, {
+                const response = await fetch(`https://todo-backend-nest.onrender.com/task/${id}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

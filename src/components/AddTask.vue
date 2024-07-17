@@ -15,15 +15,16 @@ export default {
       taskName: '', // This will hold the task name
     };
   },
+
   methods: {
 
     async add(name) {
       if (!name) return; // Prevent adding empty tasks
 
-      const token = localStorage.getItem("user"); 
-      
+      const token = localStorage.getItem("user");
+
       try {
-        const response = await fetch('http://localhost:3333/task', {
+        const response = await fetch('https://todo-backend-nest.onrender.com/task', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -40,9 +41,11 @@ export default {
         console.log(response);
         console.log('Task added successfully');
 
+        // Clear the input field
+        this.taskName = '';
         this.$emit('taskUpdated');
 
-        
+
       } catch (error) {
         console.error("Failed to add task:", error);
       }

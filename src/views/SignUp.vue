@@ -27,6 +27,7 @@ import { reactive, computed } from "vue";
 // import { mapActions } from 'vuex';
 import { useStore } from 'vuex'
 import { useRouter } from "vue-router";
+import { API_URL } from "@/constants";
 
 export default {
   name: "SignUp",
@@ -49,7 +50,7 @@ export default {
 
       //console.log(data);
 
-      const response = await fetch("https://todo-backend-nest.onrender.com/auth/signup", {
+      const response = await fetch(API_URL+"/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include',

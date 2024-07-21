@@ -1,16 +1,13 @@
 <template>
 
-  <nav>
+  <nav class="navbar">
     <div>
-      <router-link  class="home" to="/">Home🏠</router-link>
-    </div>
-    <h1>Task Manager</h1>
-    <div >
+      <router-link  class="home" to="/">Task Manager</router-link></div>
+    <div > 
+      <router-link class="nav-link" v-if="!isAuthenticated" to="/signin">Login</router-link>
+      <router-link class="nav-link" v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
 
-      <router-link v-if="!isAuthenticated" to="/signin">Login</router-link>
-      <router-link v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
-
-      <router-link @click="handleLogout" v-if="isAuthenticated" to="/signin">Logout</router-link>
+      <router-link class="logout-button" @click="handleLogout" v-if="isAuthenticated" to="/signin">Logout</router-link>
     </div>
 
   </nav>
@@ -19,6 +16,8 @@
 <script>
 
 import { mapGetters, mapActions } from 'vuex';
+
+
   
 export default {
   
@@ -34,57 +33,57 @@ export default {
     
   },
 };
+
+
 </script>
 
 <style scoped>
-  /* Navigation bar styling */
-  nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #7fd7f4; /* Match the background color of the home page */
-    color: #000000; /* Text color matching the home page */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 20);
-  }
+.navbar {
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.13); /* Adjusted for glass effect */
+  color: #fff;
+  border-radius: 10px; /* Matched with form */
+  backdrop-filter: blur(10px); /* Blur effect for glass-like appearance */
+  border: 2px solid rgba(255, 255, 255, 0.1); /* Border to match form */
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6); /* Shadow to match form */
+  position: relative;
+  overflow: hidden;
+}
 
-  /* Navigation links styling */
-  a {
-    text-decoration: none !important;
-    color: #333; /* Text color matching the home page */
-    margin-right: 20px;
-    font-weight: bolder;
-    font-size: 18px;
-  }
+.navabar-div h1, .home, .nav-link, .logout-button {
+  position: relative;
+  z-index: 1;
+}
 
-  .home {
-    margin-left: 50px;
-    font-size: larger;
-  }
-  /* Navigation links on hover styling */
-  a:hover {
-    text-decoration: underline;
-    color: blue;
-    transition: 0.5s ease-in;
-  }
+.home, .nav-link, .logout-button {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+}
 
-  /* Logout button styling */
-  [v-if="isAuthenticated"] {
-    cursor: pointer;
-    background-color: #d9534f;
-    padding: 8px 15px;
-    border: none;
-    color: #fff;
-    border-radius: 4px;
-    font-size: 16px;
-  }
+.home {
+  font-size: x-large;
+  text-transform: bold;
+  color: #fff;
+  padding: 0.5rem;
+ font-weight: 600;
+}
+.logout-button {
+  background-color: #d9534f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
 
-  [v-if="isAuthenticated"]:hover {
-    background-color: #c9302c;
-  }
+/* Removing hover effects */
+.home:hover, .nav-link:hover, .logout-button:hover {
+  text-decoration: none;
+  color: #fff;
+}
 
-  /* Hide sign-up and sign-in links for authenticated users */
-  div > a[v-if="isAuthenticated"] {
-    display: none;
-  }
 </style>

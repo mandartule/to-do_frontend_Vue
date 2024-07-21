@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1>TO DO LIST</h1>
+    <h1 >TO DO LIST</h1>
 
     <!-- add task component -->
     <AddTask v-if="isAuthenticated" @taskUpdated="fetchTasks" />
 
-    <div id="tasks" v-if="isAuthenticated">
-      <h4>Task Yet to be completed</h4>
+    <div class="task-container"  v-if="isAuthenticated">
+      <h4 v-if="notCompletedTasks.length" >Task Yet to be completed</h4>
       <ShowTask v-if="notCompletedTasks.length" :tasks="notCompletedTasks" @taskUpdated="fetchTasks" />
 
-      <h4>Completed Tasks</h4>
+      <h4 v-if="completedTasks.length">Completed Tasks</h4>
       <ShowTask v-if="completedTasks.length" :tasks="completedTasks" @taskUpdated="fetchTasks" />
     </div>
 
@@ -24,6 +24,7 @@ import { mapGetters, mapActions } from 'vuex';
 import AddTask from '../components/AddTask.vue';
 import VueJwtDecode from "vue-jwt-decode";
 import ShowTask from '@/components/ShowTask.vue';
+import { API_URL } from '@/constants';
 
 
 export default {
@@ -46,7 +47,7 @@ export default {
     async fetchTasks() {
       let token = localStorage.getItem("user");
       try {
-        const response = await fetch('https://todo-backend-nest.onrender.com/task', {
+        const response = await fetch(API_URL+'/task', {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -92,14 +93,13 @@ export default {
 </script>
 
 <style scoped>
-/* Home container styling */
+
 div {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #cbf4ed;
+  background-color: #7cc5b9;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgb(0, 0, 0);
   text-align: center;
   margin-top: 20px;
 }
@@ -112,10 +112,13 @@ h3 {
 }
 
 /* TaskTracker component styling */
-#tasks-container {
+.task-container {
   margin-top: 20px;
+  border: 1px solid #ccc; /* Solid border for definition */
+  box-shadow: -14px 15px 4px rgb(0 0 0 / 36%);/* Shadow on the right and bottom */
+              
+  background-color : #e4e2e2;
 }
-
 /* AddTask component styling */
 #add-task-form {
   display: flex;

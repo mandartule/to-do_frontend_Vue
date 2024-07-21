@@ -22,6 +22,7 @@
 
 <script>
 
+import { API_URL } from "@/constants";
 import { reactive, computed } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
@@ -41,7 +42,7 @@ export default {
 
     const submit = async () => {
 
-      const response = await fetch("https://todo-backend-nest.onrender.com/auth/login", {
+      const response = await fetch(API_URL+"/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: 'include',

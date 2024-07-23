@@ -1,5 +1,10 @@
 # todo-app
 
+
+https://github.com/user-attachments/assets/b40dab89-f82e-4e9f-b3ee-0f15ee46434c
+
+
+
 ## Project setup
 ```
 yarn install

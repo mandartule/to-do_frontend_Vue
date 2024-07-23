@@ -1,4 +1,4 @@
-![Screenshot 2024-07-23 194044](https://github.com/user-attachments/assets/7659d2bb-68cd-4494-9d53-7671c84841fd)# 📝 Todo App
+# 📝 Todo App
 
 Welcome to the Todo App! This project is a comprehensive task management application built with Vue.js. It features Vue components, Vuex for state management, and Vue validations to ensure data integrity.
 
@@ -6,7 +6,7 @@ Welcome to the Todo App! This project is a comprehensive task management applica
 
 Check out this video demonstration of our Todo App in action:
 
-![Demo Video](https://github.com/user-attachments/assets/1492aac6-df3b-4826-8f22-8105cea46646)
+https://github.com/user-attachments/assets/810c3f9e-4999-4bde-834c-f74050f6c0ec
 
 ## 🖼️ Screenshots
 

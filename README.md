@@ -8,20 +8,6 @@ Check out this video demonstration of our Todo App in action:
 
 https://github.com/user-attachments/assets/810c3f9e-4999-4bde-834c-f74050f6c0ec
 
-## 🖼️ Screenshots
-
-Here are some screenshots of the application:
-
-### Sign In
-![Sign In](https://github.com/user-attachments/assets/ce294e7d-56c5-4709-bd8e-523c5732d0e0)
-
-### Sign Up
-![Sign Up](https://github.com/user-attachments/assets/bfde40c2-158c-46bc-bcf4-7977ea7fe91e)
-
-### Add Task
-![Add task](https://github.com/user-attachments/assets/63dfc1ac-c698-427b-8cea-7a8bf78177bb)
-
-
 ## 🛠️ Technologies Used
 
 - **Vue.js**: A progressive JavaScript framework for building user interfaces.
@@ -64,10 +50,19 @@ yarn serve
 ### Compiles and minifies for production
 ```
 yarn build
-```
+``
 
-### Lints and fixes files
-```
-yarn lint
-```
+## 🖼️ Screenshots
+
+Here are some screenshots of the application:
+
+### Sign In
+![Sign In](https://github.com/user-attachments/assets/ce294e7d-56c5-4709-bd8e-523c5732d0e0)
+
+### Sign Up
+![Sign Up](https://github.com/user-attachments/assets/bfde40c2-158c-46bc-bcf4-7977ea7fe91e)
+
+### Add Task
+![Add task](https://github.com/user-attachments/assets/63dfc1ac-c698-427b-8cea-7a8bf78177bb)
+
 

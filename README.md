@@ -1,6 +1,7 @@
 # 📝 Todo App
 
-Welcome to the Todo App! This project is a comprehensive task management application built with Vue.js. It features Vue components, Vuex for state management, and Vue validations to ensure data integrity.
+## Live Link 
+👉 https://to-do-frontend-vue.vercel.app/
 
 ## 🎥 Project Demo
 

@@ -1,4 +1,4 @@
-# 📝 Todo App
+![Screenshot 2024-07-23 194044](https://github.com/user-attachments/assets/7659d2bb-68cd-4494-9d53-7671c84841fd)# 📝 Todo App
 
 Welcome to the Todo App! This project is a comprehensive task management application built with Vue.js. It features Vue components, Vuex for state management, and Vue validations to ensure data integrity.
 
@@ -6,20 +6,41 @@ Welcome to the Todo App! This project is a comprehensive task management applica
 
 Check out this video demonstration of our Todo App in action:
 
-![Demo Video](https://github.com/user-attachments/assets/b40dab89-f82e-4e9f-b3ee-0f15ee46434c)
+![Demo Video](https://github.com/user-attachments/assets/1492aac6-df3b-4826-8f22-8105cea46646)
 
 ## 🖼️ Screenshots
 
 Here are some screenshots of the application:
 
-### Home Screen
-![Home Screen](https://github.com/user-attachments/assets/b40dab89-f82e-4e9f-b3ee-0f15ee46434c/home.png)
+### Sign In
+![Sign In](https://github.com/user-attachments/assets/ce294e7d-56c5-4709-bd8e-523c5732d0e0)
 
-### Task List
-![Task List](https://github.com/user-attachments/assets/b40dab89-f82e-4e9f-b3ee-0f15ee46434c/tasks.png)
+### Sign Up
+![Sign Up](https://github.com/user-attachments/assets/bfde40c2-158c-46bc-bcf4-7977ea7fe91e)
 
 ### Add Task
-![Add Task](https://github.com/user-attachments/assets/b40dab89-f82e-4e9f-b3ee-0f15ee46434c/add_task.png)
+![Add task](https://github.com/user-attachments/assets/63dfc1ac-c698-427b-8cea-7a8bf78177bb)
+
+
+## 🛠️ Technologies Used
+
+- **Vue.js**: A progressive JavaScript framework for building user interfaces.
+- **Vuex**: A state management pattern + library for Vue.js applications.
+- **Vue Validations**: For form validation and ensuring data integrity.
+
+## 🔧 Customize Configuration
+
+For more detailed configuration options, visit the [Vue CLI Configuration Reference](https://cli.vuejs.org/config/).
+
+## 📫 Contact
+
+If you have any questions or suggestions, feel free to reach out!
+
+- **LinkedIn**: [Mandar Tule](https://www.linkedin.com/in/mandartule)
+- **Email**: [mandartule5@gmail.com](mailto:mandartule5@gmail.com)
+
+Happy Coding! 😃
+
 
 ## 🚀 Project Setup
 
@@ -50,5 +71,3 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

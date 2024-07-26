@@ -85,7 +85,7 @@ export default {
 }
 
 .background {
-  margin-top: 50px;
+  margin-top: 10px;
   background-color: #080710;
   width: 430px;
   height: 560px;

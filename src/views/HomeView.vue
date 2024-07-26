@@ -1,11 +1,12 @@
 <template>
   <div>
-    <h1 >TO DO LIST</h1>
+    <h1 v-if="isAuthenticated" >TO DO LIST</h1>
 
     <!-- add task component -->
     <AddTask v-if="isAuthenticated" @taskUpdated="fetchTasks" />
 
     <div class="task-container"  v-if="isAuthenticated">
+
       <h4 v-if="notCompletedTasks.length" >Task Yet to be completed</h4>
       <ShowTask v-if="notCompletedTasks.length" :tasks="notCompletedTasks" @taskUpdated="fetchTasks" />
 
@@ -13,9 +14,16 @@
       <ShowTask v-if="completedTasks.length" :tasks="completedTasks" @taskUpdated="fetchTasks" />
     </div>
 
-    <div v-else>
-      You are not logged In Please log in to view your tasks
+    <div class="msg" v-else>
+      Welcome to Task Tracker
+      <br/>
+      <br/>
+      <br/>
+      You are not logged In 
+      <br/>
+      Please log in to view your tasks
     </div>
+
   </div>
 </template>
 
@@ -102,6 +110,28 @@ div {
   border-radius: 8px;
   text-align: center;
   margin-top: 20px;
+}
+
+.msg{
+  background: linear-gradient(247deg, #fcb045,#c42d2d,#833ab4,#5aced0);
+  background-size: 1000% 1000%;
+  animation: AnimationName 20s ease infinite;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px 0;
+  font-family: Arial, sans-serif;
+  color: #d8c4c4;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 30px;
+  font-weight: bolder;
+  ;
+}
+
+@keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
 }
 
 /* Title styling */

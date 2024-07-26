@@ -4,8 +4,8 @@
     <div>
       <router-link  class="home" to="/">Task Manager</router-link></div>
     <div > 
-      <router-link class="nav-link" v-if="!isAuthenticated" to="/signin">Login</router-link>
-      <router-link class="nav-link" v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
+      <router-link class="signIn" v-if="!isAuthenticated" to="/signin">Login</router-link>
+      <router-link class="signOut" v-if="!isAuthenticated" to="/signup">Sign Up</router-link>
 
       <router-link class="logout-button" @click="handleLogout" v-if="isAuthenticated" to="/signin">Logout</router-link>
     </div>
@@ -59,11 +59,26 @@ export default {
   z-index: 1;
 }
 
-.home, .nav-link, .logout-button {
+.home, .logout-button {
   color: #fff;
   text-decoration: none;
   padding: 0.5rem;
 }
+
+ .signIn {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+  background: none;
+}
+
+.signOut {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem;
+  background: none;
+}
+
 
 .home {
   font-size: x-large;
@@ -84,6 +99,21 @@ export default {
 .home:hover, .nav-link:hover, .logout-button:hover {
   text-decoration: none;
   color: #fff;
+}
+
+/* Adding glow effect on hover for sign-in and sign-out buttons */
+.signIn:hover, .signOut:hover {
+  animation: glow 1s infinite alternate;
+  background: none;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #fff;
+  }
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #00e1ff, 0 0 40px #00e1ff, 0 0 50px #00e1ff;
+  }
 }
 
 </style>

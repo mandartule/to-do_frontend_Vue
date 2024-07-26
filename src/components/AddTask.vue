@@ -1,17 +1,22 @@
 <template>
   <div class="task-form-container">
+
     <form class="task-form" @submit.prevent="add(taskName)">
       <label for="task" class="task-label">Add a task</label>
       <input class="task-input" type="text" v-model="taskName" placeholder="Enter task name" id="task" required />
       <button class="submit-button" type="submit">Add Task</button>
     </form>
+
   </div>
 </template>
 
+
 <script>
+
 import { API_URL } from '@/constants';
 
 export default {
+
   data() {
     return {
       taskName: '', // This will hold the task name
@@ -21,6 +26,7 @@ export default {
   methods: {
 
     async add(name) {
+      
       if (!name) return; // Prevent adding empty tasks
 
       const token = localStorage.getItem("user");
